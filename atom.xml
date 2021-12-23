@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>君がいないブログ</title>
+  <title>君不见</title>
   <icon>https://www.gravatar.com/avatar/97dcf163f0f1b667b352a2cdba096f01</icon>
-  <subtitle>君不见</subtitle>
+  <subtitle>这是一个博客</subtitle>
   <link href="http://suqu46.cn/atom.xml" rel="self"/>
   
   <link href="http://suqu46.cn/"/>
