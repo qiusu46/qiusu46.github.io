@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Python-nmap模块使用</title>
+      <link href="/2021/12/26/Python-Nmap%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/"/>
+      <url>/2021/12/26/Python-Nmap%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="模块安装（python3）"><a href="#模块安装（python3）" class="headerlink" title="模块安装（python3）"></a>模块安装（python3）</h2><p>安装pip3</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install python-pip3</span><br></pre></td></tr></table></figure><p>查看安装结果</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 -V#查看版本号</span><br></pre></td></tr></table></figure><p>安装nmap模块</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install python-nmap</span><br></pre></td></tr></table></figure><h2 id="Nmap模块使用"><a href="#Nmap模块使用" class="headerlink" title="Nmap模块使用"></a>Nmap模块使用</h2><p>Nmap模块主要用两个常用类，一个是**PortScanner()<strong>，是实现一个nmap工具的端口扫描功能封装；另一个是</strong>PortScannerHostDict()**，是实现存储与访问主机扫描结果。</p><h3 id="PortScanner-类"><a href="#PortScanner-类" class="headerlink" title="PortScanner()类"></a>PortScanner()类</h3><h4 id="scan-方法"><a href="#scan-方法" class="headerlink" title="scan()方法"></a>scan()方法</h4><p>例：scan(self,host=’127.0.0.1’, port=None, arguments=’-sV’)</p><p>​        实现指定主机、端口、nmap命令行参数扫描。<strong>host</strong>为字符串类型，表示扫描主机地址，格式可以用<strong>“scanme.nmap.org”、“172.16.1.1”、“172.16.1.0/24”、“172.16.0-255.1-255”</strong>表示；参数prots为字符串类型，表示扫描的端口，可以用<strong>“21,22,23”或“21:1024”</strong>等方法表示；参数arguments表示nmap命令行参数，如：**-p-、-sV、-sP**等命令行参数</p><p>例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import nmap</span><br><span class="line">nm = nmap.PortScanner()</span><br><span class="line">data = nm.scan(&#x27;192.168.19.103&#x27;, &#x27;22&#x27;, &#x27;-sV&#x27;)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure><p>输入命令vim scan.py编辑（scan.py是文件名称，随便取个名字就好，后缀为py）</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Z8q.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0G3h.png"></p><h4 id="command-line-方法"><a href="#command-line-方法" class="headerlink" title="command_line()方法"></a>command_line()方法</h4><p>返回扫描方法映射到具体的nmap命令行</p><p>例如刚才的例子</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0PST.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0ap1.png"></p><h4 id="scaninfo-方法"><a href="#scaninfo-方法" class="headerlink" title="scaninfo()方法"></a>scaninfo()方法</h4><p>返回nmap扫描信息，格式为字典类型</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0edo.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0qVD.png"></p><h4 id="all-hosts-方法"><a href="#all-hosts-方法" class="headerlink" title="all_hosts()方法"></a>all_hosts()方法</h4><p>返回扫描对象的主机名</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0J2C.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0m8Q.png"></p><h4 id="hostname-方法"><a href="#hostname-方法" class="headerlink" title="hostname()方法"></a>hostname()方法</h4><p>返回扫描对象的主机名</p><h4 id="state-方法"><a href="#state-方法" class="headerlink" title="state()方法"></a>state()方法</h4><p>返回扫描对象的状态，包括up、down、unknown、skipped</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ00Y0.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Qem.png" alt="https://www.helloimg.com/images/2021/12/26/GQ0Qem.png"></p><h4 id="all-protocols-方法"><a href="#all-protocols-方法" class="headerlink" title="all_protocols()方法"></a>all_protocols()方法</h4><p>返回扫描的协议</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0p2h.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0zKc.png"></p><h4 id="all-tcp-方法"><a href="#all-tcp-方法" class="headerlink" title="all_tcp()方法"></a>all_tcp()方法</h4><p>返回TCP协议扫描的端口</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Iir.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Iir.png"></p><h4 id="tcp-方法"><a href="#tcp-方法" class="headerlink" title="tcp()方法"></a>tcp()方法</h4><p>返回扫描TCP协议prot(端口)的信息</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0KB1.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0UsK.png"></p><h3 id="PortScannerHostDict-类"><a href="#PortScannerHostDict-类" class="headerlink" title="PortScannerHostDict()类"></a>PortScannerHostDict()类</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> 模块 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Nmap模块 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>渗透查看win7回收站内容</title>
       <link href="/2021/12/23/%E6%B8%97%E9%80%8Fwin7%E6%9F%A5%E7%9C%8B%E5%9B%9E%E6%94%B6%E7%AB%99%E5%86%85%E5%AE%B9/"/>
       <url>/2021/12/23/%E6%B8%97%E9%80%8Fwin7%E6%9F%A5%E7%9C%8B%E5%9B%9E%E6%94%B6%E7%AB%99%E5%86%85%E5%AE%B9/</url>

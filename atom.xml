@@ -6,7 +6,7 @@
   <link href="http://suqu46.cn/atom.xml" rel="self"/>
   
   <link href="http://suqu46.cn/"/>
-  <updated>2021-12-23T08:46:25.975Z</updated>
+  <updated>2021-12-26T13:31:52.828Z</updated>
   <id>http://suqu46.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python-nmap模块使用</title>
+    <link href="http://suqu46.cn/2021/12/26/Python-Nmap%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/"/>
+    <id>http://suqu46.cn/2021/12/26/Python-Nmap%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/</id>
+    <published>2021-12-26T13:30:19.685Z</published>
+    <updated>2021-12-26T13:31:52.828Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="模块安装（python3）"><a href="#模块安装（python3）" class="headerlink" title="模块安装（python3）"></a>模块安装（python3）</h2><p>安装pip3</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install python-pip3</span><br></pre></td></tr></table></figure><p>查看安装结果</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 -V#查看版本号</span><br></pre></td></tr></table></figure><p>安装nmap模块</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install python-nmap</span><br></pre></td></tr></table></figure><h2 id="Nmap模块使用"><a href="#Nmap模块使用" class="headerlink" title="Nmap模块使用"></a>Nmap模块使用</h2><p>Nmap模块主要用两个常用类，一个是**PortScanner()<strong>，是实现一个nmap工具的端口扫描功能封装；另一个是</strong>PortScannerHostDict()**，是实现存储与访问主机扫描结果。</p><h3 id="PortScanner-类"><a href="#PortScanner-类" class="headerlink" title="PortScanner()类"></a>PortScanner()类</h3><h4 id="scan-方法"><a href="#scan-方法" class="headerlink" title="scan()方法"></a>scan()方法</h4><p>例：scan(self,host=’127.0.0.1’, port=None, arguments=’-sV’)</p><p>​        实现指定主机、端口、nmap命令行参数扫描。<strong>host</strong>为字符串类型，表示扫描主机地址，格式可以用<strong>“scanme.nmap.org”、“172.16.1.1”、“172.16.1.0/24”、“172.16.0-255.1-255”</strong>表示；参数prots为字符串类型，表示扫描的端口，可以用<strong>“21,22,23”或“21:1024”</strong>等方法表示；参数arguments表示nmap命令行参数，如：**-p-、-sV、-sP**等命令行参数</p><p>例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import nmap</span><br><span class="line">nm = nmap.PortScanner()</span><br><span class="line">data = nm.scan(&#x27;192.168.19.103&#x27;, &#x27;22&#x27;, &#x27;-sV&#x27;)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure><p>输入命令vim scan.py编辑（scan.py是文件名称，随便取个名字就好，后缀为py）</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Z8q.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0G3h.png"></p><h4 id="command-line-方法"><a href="#command-line-方法" class="headerlink" title="command_line()方法"></a>command_line()方法</h4><p>返回扫描方法映射到具体的nmap命令行</p><p>例如刚才的例子</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0PST.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0ap1.png"></p><h4 id="scaninfo-方法"><a href="#scaninfo-方法" class="headerlink" title="scaninfo()方法"></a>scaninfo()方法</h4><p>返回nmap扫描信息，格式为字典类型</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0edo.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0qVD.png"></p><h4 id="all-hosts-方法"><a href="#all-hosts-方法" class="headerlink" title="all_hosts()方法"></a>all_hosts()方法</h4><p>返回扫描对象的主机名</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0J2C.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0m8Q.png"></p><h4 id="hostname-方法"><a href="#hostname-方法" class="headerlink" title="hostname()方法"></a>hostname()方法</h4><p>返回扫描对象的主机名</p><h4 id="state-方法"><a href="#state-方法" class="headerlink" title="state()方法"></a>state()方法</h4><p>返回扫描对象的状态，包括up、down、unknown、skipped</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ00Y0.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Qem.png" alt="https://www.helloimg.com/images/2021/12/26/GQ0Qem.png"></p><h4 id="all-protocols-方法"><a href="#all-protocols-方法" class="headerlink" title="all_protocols()方法"></a>all_protocols()方法</h4><p>返回扫描的协议</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0p2h.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0zKc.png"></p><h4 id="all-tcp-方法"><a href="#all-tcp-方法" class="headerlink" title="all_tcp()方法"></a>all_tcp()方法</h4><p>返回TCP协议扫描的端口</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Iir.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0Iir.png"></p><h4 id="tcp-方法"><a href="#tcp-方法" class="headerlink" title="tcp()方法"></a>tcp()方法</h4><p>返回扫描TCP协议prot(端口)的信息</p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0KB1.png"></p><p><img src="https://www.helloimg.com/images/2021/12/26/GQ0UsK.png"></p><h3 id="PortScannerHostDict-类"><a href="#PortScannerHostDict-类" class="headerlink" title="PortScannerHostDict()类"></a>PortScannerHostDict()类</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;模块安装（python3）&quot;&gt;&lt;a href=&quot;#模块安装（python3）&quot; class=&quot;headerlink&quot; title=&quot;模块安装（python3）&quot;&gt;&lt;/a&gt;模块安装（python3）&lt;/h2&gt;&lt;p&gt;安装pip3&lt;/p&gt;
+&lt;figure class=&quot;</summary>
+      
+    
+    
+    
+    <category term="Python" scheme="http://suqu46.cn/categories/Python/"/>
+    
+    <category term="模块" scheme="http://suqu46.cn/categories/Python/%E6%A8%A1%E5%9D%97/"/>
+    
+    
+    <category term="Python" scheme="http://suqu46.cn/tags/Python/"/>
+    
+    <category term="Nmap模块" scheme="http://suqu46.cn/tags/Nmap%E6%A8%A1%E5%9D%97/"/>
+    
+  </entry>
   
   <entry>
     <title>渗透查看win7回收站内容</title>
@@ -581,32 +610,6 @@
     <category term="渗透" scheme="http://suqu46.cn/tags/%E6%B8%97%E9%80%8F/"/>
     
     <category term="Kali" scheme="http://suqu46.cn/tags/Kali/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DoraBox文件上传（一）</title>
-    <link href="http://suqu46.cn/2021/12/23/DoraBox%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://suqu46.cn/2021/12/23/DoraBox%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%EF%BC%88%E4%B8%80%EF%BC%89/</id>
-    <published>2021-12-23T08:09:58.458Z</published>
-    <updated>2021-12-23T08:09:58.458Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h2><p>点击了解一句话木马：<a href="https://blog.csdn.net/weixin_39190897/article/details/86772765">一句话木马</a></p><p>题目写的是任意文件上传，所以我们直接上床一个一句话木马</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @system($_GET[a]);?&gt;</span><br></pre></td></tr></table></figure><p><img src="/img/DoraBoxwenjianshangchuan/1.png"></p><p><img src="/img/DoraBoxwenjianshangchuan/2.png"></p><p><img src="/img/DoraBoxwenjianshangchuan/3.png"></p><p>是不是很简单</p><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.b7.cn%2Fd%2Ffile%2F20190819%2F1d4db9dadbddf0772ace1092555b7f7f.jpg&refer=http%3A%2F%2Fwww.b7.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639050378&t=b99c9d9ce87a7ef370d059231c50c7bf"></p><p>接下来根据Stored所给路径访问测试</p><p><img src="/img/DoraBoxwenjianshangchuan/4.png"></p><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201809%2F08%2F20180908125730_24yjX.thumb.400_0.gif&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639050617&t=994416a4df563a4bde61818e0cde1978"></p><h2 id="JS限制文件上传"><a href="#JS限制文件上传" class="headerlink" title="JS限制文件上传"></a>JS限制文件上传</h2><p>一样先用php文件上传</p><p>提示只能上传图片</p><p><img src="/img/DoraBoxwenjianshangchuan/5.png"></p><p><img src="https://img1.baidu.com/it/u=2010333076,1637543918&fm=26&fmt=auto"></p><p>既然这样我们就由我们的Burp闪亮登场（记得开代理）</p><p>首先先把我们的php文件改成jpg为后缀</p><p><img src="/img/DoraBoxwenjianshangchuan/6.png"></p><p>上传抓包</p><p><img src="/img/DoraBoxwenjianshangchuan/7.png"></p><p><img src="/img/DoraBoxwenjianshangchuan/8.png"></p><p>把jpg修改成php</p><p><img src="https://img0.baidu.com/it/u=3981365252,242824101&fm=26&fmt=auto"></p><p><img src="/img/DoraBoxwenjianshangchuan/9.png"></p><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F06%2F20200406035818_aAdHP.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639052635&t=e01c72d8f9b3929f131642a6a859e434"></p><p>放包，上传成功！（记得换个文件名，我忘了）</p><p><img src="/img/DoraBOxwenjianshangchuan/10.png"></p><p>测试</p><p><img src="/img/DoraBoxwenjianshangchuan/11.png"></p><p>接着</p><p>等待下一章更新</p><p><img src="https://img1.baidu.com/it/u=1752911575,356243476&fm=26&fmt=auto"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\js\APlayer.min.js&quot; class=&quot;aplayer-se</summary>
-      
-    
-    
-    
-    <category term="Web渗透" scheme="http://suqu46.cn/categories/Web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="Web" scheme="http://suqu46.cn/tags/Web/"/>
-    
-    <category term="渗透" scheme="http://suqu46.cn/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
