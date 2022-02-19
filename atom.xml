@@ -6,7 +6,7 @@
   <link href="http://suqu46.cn/atom.xml" rel="self"/>
   
   <link href="http://suqu46.cn/"/>
-  <updated>2021-12-28T02:17:49.076Z</updated>
+  <updated>2022-02-19T09:13:21.564Z</updated>
   <id>http://suqu46.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2022取证分析</title>
+    <link href="http://suqu46.cn/2022/02/19/2022%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/"/>
+    <id>http://suqu46.cn/2022/02/19/2022%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/</id>
+    <published>2022-02-19T08:56:02.547Z</published>
+    <updated>2022-02-19T09:13:21.564Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="取证分析"><a href="#取证分析" class="headerlink" title="取证分析"></a>取证分析</h1><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>使用Wireshark查看并分析PYsystemWH1桌面下的captureWH.pcapng数据包文件，找出黑客获取到的可成功登录目标服务器FTP的账号密码，并将黑客获取到的账号密码作为Flag值（用户名与密码之间以英文逗号分隔，例如：root,toor）提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/GkdquS.png"></p><p>flag：Z,qazwsx123</p><h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>继续分析数据包captureWH.pcapng，找出黑客使用获取到的账号密码登录FTP的时间，并将黑客登录FTP的时间作为Flag值（例如：14:22:08）提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/GkdEJC.png"></p><p>flag：22:04:17</p><h3 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h3><p>继续分析数据包captureWH.pcapng，找出黑客连接FTP服务器时获取到的FTP服务版本号，并将获取到的FTP服务版本号作为Flag值提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/GkdXLo.png"></p><p>右键追踪流成功登陆那一条</p><p>flag：2.2.2</p><h3 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h3><p>继续分析数据包captureWH.pcapng，找出黑客成功登录FTP服务器后执行的第一条命令，并将执行的命令作为Flag值提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/GkdeND.png"></p><p>FTP提供SYST和STAT命令。其中，SYST命令用来获取服务器的操作系统，STAT用于获取当前程序和目录信息。这两个命令的信息默认不显示。NMAP的ftp-syst脚本通过向FTP服务器发送这两个命令，并解析返回信息，而获取相关信息，如操作系统类型、FTP配置信息等。</p><p>flag：dir</p><h3 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h3><p>继续分析数据包captureWH.pcapng，找出黑客成功登录FTP服务器后下载的关键文件，并将下载的文件名称作为Flag值提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/Gkd3Rb.png"></p><p>过滤telnet后右键追踪流</p><p>flag：exploit.c</p><h3 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h3><p>继续分析数据包captureWH.pcapng，找出黑客暴力破解目标服务器Telnet服务并成功获取到的用户名与密码，并将获取到的用户名与密码作为Flag值（用户名与密码之间以英文逗号分隔，例如：root,toor）提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/GkdJOQ.png"></p><p>flag：ZZ,qwerqwer123</p><h3 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h3><p>继续分析数据包captureWH.pcapng，找出黑客在服务器网站根目录下添加的文件，并将该文件的文件名称作为Flag值提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/Gkdmrt.png"></p><p>flag：alive</p><h3 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h3><p>继续分析数据包captureWH.pcapng，找出黑客在服务器系统中添加的用户，并将添加的用户名与密码作为Flag值（用户名与密码之间以英文逗号分隔，例如：root,toor）提交</p><p><img src="https://www.helloimg.com/images/2022/02/19/Gkdt1u.png"></p><p>flag：ss,plieve3.4</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;取证分析&quot;&gt;&lt;a href=&quot;#取证分析&quot; class=&quot;headerlink&quot; title=&quot;取证分析&quot;&gt;&lt;/a&gt;取证分析&lt;/h1&gt;&lt;h3 id=&quot;第一题&quot;&gt;&lt;a href=&quot;#第一题&quot; class=&quot;headerlink&quot; title=&quot;第一题&quot;&gt;&lt;/a&gt;第一</summary>
+      
+    
+    
+    
+    <category term="Wireshark" scheme="http://suqu46.cn/categories/Wireshark/"/>
+    
+    
+    <category term="取证分析" scheme="http://suqu46.cn/tags/%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>Python-nmap模块使用</title>
@@ -590,36 +614,6 @@
     <category term="扫描" scheme="http://suqu46.cn/tags/%E6%89%AB%E6%8F%8F/"/>
     
     <category term="nmap" scheme="http://suqu46.cn/tags/nmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FTP笑脸漏洞</title>
-    <link href="http://suqu46.cn/2021/12/23/FTP%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/"/>
-    <id>http://suqu46.cn/2021/12/23/FTP%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/</id>
-    <published>2021-12-23T08:09:58.459Z</published>
-    <updated>2021-12-23T08:09:58.459Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>靶机：Metasploitable2</p><p>攻击机：Kali</p><h2 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h2><p>首先我们查看一下Metasploitable2的IP还有我们的Kali的IP</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5X3v.png"></p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5eME.png"></p><h2 id="扫描FTP端口"><a href="#扫描FTP端口" class="headerlink" title="扫描FTP端口"></a>扫描FTP端口</h2><p>好了，既然我们知道靶机的IP就扫描他的21端口的版本号</p><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.wxcha.com%2Ffile%2F201905%2F17%2F2ec4142728.jpg&refer=http%3A%2F%2Fimg.wxcha.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638846992&t=4e380c43a4a50e162987f927a948d681"></p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5EZ9.png"></p><p>现在我们知道他的版本号是2.3.4了</p><p>接着我们扫描全部端口</p><p><img src="https://img1.baidu.com/it/u=1860989660,31265886&fm=253&fmt=auto&app=138&f=PNG?w=174&h=164"></p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5q6Y.png"></p><p>注意！他现在是没有6200端口的</p><p>这时就需要我们去开启他了</p><p><img src="https://img2.baidu.com/it/u=3843003660,1206078383&fm=26&fmt=auto"></p><h2 id="开启6200端口"><a href="#开启6200端口" class="headerlink" title="开启6200端口"></a>开启6200端口</h2><p>打开我们的CMD窗口</p><p>输入ftp 172.16.1.107</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5act.png"></p><p>输入用户名root:)</p><p>密码随便输</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5JSX.png"></p><p>看见没用户名是个歪着的笑脸</p><p><img src="https://img2.baidu.com/it/u=1490811348,3819277822&fm=26&fmt=auto"></p><p>输完就和图片一样不用去管</p><p>接着我们回到Kali重新扫描他的所有端口</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5mQg.png"></p><p>然后你就发现多了个6200的端口</p><p><img src="https://img0.baidu.com/it/u=3058060533,726879872&fm=26&fmt=auto"></p><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>当开启6200端口后我们就可以使用nc命令连接了</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5syM.png"></p><p>然后我们使用命令看看能不能使用</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch54mP.png"></p><p>呦吼，可以使用（Linux和CMD命令都可以使用）</p><p><img src="https://img1.baidu.com/it/u=2229101157,1940665360&fm=26&fmt=auto"></p><p>最后记住他只能连接一次，退出去就进不了了</p><p><img src="https://www.helloimg.com/images/2021/11/07/Ch5Ac6.png"></p><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F11%2F20200411012317_xLZGk.thumb.400_0.gif&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638847887&t=e1a8051ce0e2ca2d16f62373fb0f8f4e"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\js\APlayer.min.js&quot; class=&quot;aplayer-se</summary>
-      
-    
-    
-    
-    <category term="Linux" scheme="http://suqu46.cn/categories/Linux/"/>
-    
-    <category term="Kali" scheme="http://suqu46.cn/categories/Linux/Kali/"/>
-    
-    <category term="渗透" scheme="http://suqu46.cn/categories/Linux/Kali/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="渗透" scheme="http://suqu46.cn/tags/%E6%B8%97%E9%80%8F/"/>
-    
-    <category term="Kali" scheme="http://suqu46.cn/tags/Kali/"/>
     
   </entry>
   
